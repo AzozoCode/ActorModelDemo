@@ -1,4 +1,5 @@
 ﻿using Akka.Actor;
+using Akka.Actor.Dsl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace ActorModelDemo
                 if(availableRoom != null)
                 {
                     availableRoom.IsBook = true;
-                    var billingActor = Context.ActorOf<BillingActor>("billingActor");
+                     
                     Self.Tell(new RoomBooked { RoomNumber = msg.RoomNumber});
 
                 }

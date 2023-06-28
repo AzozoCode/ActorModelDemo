@@ -12,6 +12,8 @@ namespace ActorModelDemo
             reservator.Tell(new BookTheRoom { RoomNumber = 1});
             reservator.Tell(new BookTheRoom { RoomNumber = 1 });
 
+            
+
             Console.ReadLine();
         }
     }

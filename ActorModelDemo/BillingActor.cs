@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ActorModelDemo
 {
-    internal class RoomBooked
+    internal class BillingActor
     {
-        public int RoomNumber { get; set; }
+       
     }
 }

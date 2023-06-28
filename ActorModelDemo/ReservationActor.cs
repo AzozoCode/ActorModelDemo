@@ -27,9 +27,20 @@ namespace ActorModelDemo
                 if(availableRoom != null)
                 {
                     availableRoom.IsBook = true;
-                    Self.Tell(new BookedRoom { RoomNumber = msg.RoomNumber});
+                    var billingActor = Context.ActorOf<BillingActor>("billingActor");
+                    Self.Tell(new RoomBooked { RoomNumber = msg.RoomNumber});
+
                 }
+                else
+                {
+                    Self.Tell(new RoomBusy {RoomNumber = msg.RoomNumber });
+                }
+
+                
             });
+
+            Receive<RoomBooked>(msg => Console.WriteLine($"Room {msg.RoomNumber} booked"));
+            Receive<RoomBusy>(msg => Console.WriteLine($"Room {msg.RoomNumber} busy"));
         }
     }
 }

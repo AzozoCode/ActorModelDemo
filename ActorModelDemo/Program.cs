@@ -6,8 +6,11 @@ namespace ActorModelDemo
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
-           
+
+            ActorSystem actorSystem = ActorSystem.Create("MySystem");
+            IActorRef reservator = actorSystem.ActorOf<ReservationActor>("reservator");
+            reservator.Tell(new BookTheRoom { RoomNumber = 1});
+            reservator.Tell(new BookTheRoom { RoomNumber = 1 });
 
             Console.ReadLine();
         }

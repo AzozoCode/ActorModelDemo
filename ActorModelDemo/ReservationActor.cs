@@ -20,7 +20,16 @@ namespace ActorModelDemo
 
         public ReservationActor()
         {
-            Receive<BookTheRoom>();
+            Receive<BookTheRoom>(msg =>
+            {
+                var availableRoom = _rooms.SingleOrDefault(x => x.RoomNumber == msg.RoomNumber && !x.IsBook);
+
+                if(availableRoom != null)
+                {
+                    availableRoom.IsBook = true;
+                    Self.Tell(new BookedRoom { RoomNumber = msg.RoomNumber});
+                }
+            });
         }
     }
 }
